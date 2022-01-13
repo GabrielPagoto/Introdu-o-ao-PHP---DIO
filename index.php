@@ -1,23 +1,24 @@
-<?php
+<!DOCTYPE html>
+<html>
 
-    $categorias = [];
-    $categorias[] = 'infantil';
-    $categorias[] = 'adolescente';
-    $categorias[] = 'adulto';
-    $categorias[] = 'idoso';
+<head>
+    <meta charset="utf-8">
+    <title>Formulário de Inscrição</title>
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-    $nome = 'Eduardo';
-    $idade = 18;
-    //var_dump($nome);
-    //var_dump($idade);
+<body>
 
-    if($idade >= 6 && $idade <= 12){
-        echo $categorias[0];
-    }
-    else if($idade >= 13 && $idade <= 17){
-        echo $categorias[1];
-    }
-    else{
-        echo $categorias[2];
-    }
-?>
+<p>FORMULÁRIO PARA INSCRIÇÃO DE COMPETIDORES</p>
+
+<form action="script.php" method="post">
+<p>Seu nome: <input type="text" name="nome" /></p>
+<p>Sua idade: <input type="text" name="idade" /></p>
+<p><input type="submit" value="Enviar"/></p>
+</form>
+
+</body>
+
+</html>
