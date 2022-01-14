@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $categorias = [];
 $categorias[] = "infantil";
 $categorias[] = "adolescente";
@@ -14,41 +16,59 @@ $idade = $_POST['idade'];
 //var_dump($idade);
 
 if(empty($nome)){
-    echo "O nome não pode estar vazio.";
+    $_SESSION['mensagem de erro'] = "O nome não pode estar vazio, favor preencher novamente.";
+    header('Location: index.php');
     return;
 }
 else if(strlen($nome) < 3){
-    echo "O nome deve conter pelo menos 3 caracteres.";
-    return; 
+    $_SESSION['mensagem de erro'] = "O nome não pode conter menos de três caracteres.";
+    header('Location: index.php');
+    return;
 }
 else if(strlen($nome) > 40){
-    echo "O nome é muito extenso.";
-    return; 
+    $_SESSION['mensagem de erro'] = "O nome não pode conter mais de quarenta caracteres.";
+    header('Location: index.php');
+    return;
 }
-
-if(!is_numeric($idade)){
-    echo "A idade informada não é um número.";
+else if (empty($idade)){
+    $_SESSION['mensagem de erro'] = "A idade não pode estar vazia.";
+    header('Location: index.php');
+    return;
+}
+else if(!is_numeric($idade)){
+    $_SESSION['mensagem de erro'] = "A idade informada não é um número.";
+    header('Location: index.php');
     return;
 }
 
 if($idade>=6 && $idade <= 12){
     $i = 0;
-    echo "O nadador ". $nome. " compete na categoria ". $categorias[$i];
+    $_SESSION['mensagem de sucesso'] = "O nadador ". $nome. " compete na categoria ". $categorias[$i];
+    header('Location: index.php');
+    return;
 }
 else if($idade>=13 && $idade<=18){
     $i = 1;
-    echo "O nadador ". $nome. " compete na categoria ". $categorias[$i];
+    $_SESSION['mensagem de sucesso'] = "O nadador ". $nome. " compete na categoria ". $categorias[$i];
+    header('Location: index.php');
+    return;
 }
 else if($idade>=19 && $idade<=59){
     $i = 2;
-    echo "O nadador ". $nome. " compete na categoria ". $categorias[$i];
+    $_SESSION['mensagem de sucesso'] = "O nadador ". $nome. " compete na categoria ". $categorias[$i];
+    header('Location: index.php');
+    return;
 }
 else if($idade>= 60){
     $i = 3;
-    echo "O nadador ". $nome. " compete na categoria ". $categorias[$i];
+    $_SESSION['mensagem de sucesso'] = "O nadador ". $nome. " compete na categoria ". $categorias[$i];
+    header('Location: index.php');
+    return;
 }
 else{
-    echo "Não existe categoria cadastrada para a idade informada.";
+    $_SESSION['mensagem de erro'] = "Não existe categoria cadastrada para a idade informada.";
+    header('Location: index.php');
+    return;
 }
 
 ?>
